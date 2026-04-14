@@ -2,7 +2,7 @@ name: Fetch Polymarket Changelog
 
 on:
   schedule:
-    - cron: '50 1 * * *'   # 每天 09:50 CST (01:50 UTC)，在 Dify 10:00 触发前更新
+    - cron: '20 1 * * *'   # 每天 09:20 CST (01:50 UTC)，在 Dify 10:00 触发前更新
   workflow_dispatch:        # 支持手动触发
 
 jobs:

@@ -6,14 +6,14 @@
 
 > Welcome to the Polymarket Changelog. Here you will find any important changes to Polymarket, including but not limited to CLOB, API, UI and Mobile Applications.
 
-<Update label="Apr 17, 2026" description="CLOB V2: upgrades go live April 22 at ~11:00 UTC, with ~1 hour of downtime">
+<Update label="Apr 17, 2026" description="CLOB V2: upgrades go live April 28 at ~11:00 UTC, with ~1 hour of downtime">
   Polymarket is shipping a coordinated upgrade: **new Exchange contracts, a rewritten CLOB backend, and a new collateral token (pUSD)**.
 
-  **Exchange upgrades go live April 22, 2026 at \~11:00 UTC with \~1 hour of downtime.** All integrations must migrate to the V2 SDK before the cutover — there will be no backward compatibility after go-live.
+  **Exchange upgrades go live April 28, 2026 at \~11:00 UTC with \~1 hour of downtime.** All integrations must migrate to the V2 SDK before the cutover — there will be no backward compatibility after go-live.
 
   **Full walkthrough:** [Migrating to CLOB V2](/v2-migration). Follow [Discord](https://discord.gg/polymarket), Telegram, and [status.polymarket.com](https://status.polymarket.com) for the exact start time.
 
-  **Test against V2 now:** point your client at `https://clob-v2.polymarket.com`. On April 22, V2 takes over `https://clob.polymarket.com`, so no base-URL change is needed after the cutover.
+  **Test against V2 now:** point your client at `https://clob-v2.polymarket.com`. On April 28, V2 takes over `https://clob.polymarket.com`, so no base-URL change is needed after the cutover.
 
   **What's changing**
 
@@ -33,7 +33,7 @@
   * If you sign orders without the SDK, update the `verifyingContract` and the signed Order fields — see [For API users](/v2-migration#for-api-users)
   * Plan for all open orders to be wiped at cutover
 
-  **During the window:** Trading will be paused for \~1 hour on April 22 starting around 11:00 UTC. The SDK's hot-swap mechanism will auto-refresh the client when V2 goes live — no manual action needed if you're on the latest SDK.
+  **During the window:** Trading will be paused for \~1 hour on April 28 starting around 11:00 UTC. The SDK's hot-swap mechanism will auto-refresh the client when V2 goes live — no manual action needed if you're on the latest SDK.
 </Update>
 
 <Update label="Apr 13, 2026" description="Bridge API: added support link for bridging issues">

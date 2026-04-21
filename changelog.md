@@ -6,6 +6,11 @@
 
 > Welcome to the Polymarket Changelog. Here you will find any important changes to Polymarket, including but not limited to CLOB, API, UI and Mobile Applications.
 
+<Update label="Apr 21, 2026" description="Relayer API: POST /submit returns immediately without transactionHash">
+  * **Faster `POST /submit` responses**: The Relayer's `POST /submit` endpoint now returns immediately with just `{ transactionID, state: "STATE_NEW" }`. The `transactionHash` field has been removed from the submit response to improve performance.
+  * **How to get the hash**: Poll [`GET /transaction`](/api-reference/relayer/get-a-transaction-by-id) with the returned `transactionID` to retrieve the onchain `transactionHash` once the transaction has been broadcast.
+</Update>
+
 <Update label="Apr 17, 2026" description="CLOB V2: upgrades go live April 28 at ~11:00 UTC, with ~1 hour of downtime">
   Polymarket is shipping a coordinated upgrade: **new Exchange contracts, a rewritten CLOB backend, and a new collateral token (pUSD)**.
 

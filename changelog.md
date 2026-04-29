@@ -6,6 +6,15 @@
 
 > Welcome to the Polymarket Changelog. Here you will find any important changes to Polymarket, including but not limited to CLOB, API, UI and Mobile Applications.
 
+<Update label="Apr 28, 2026" description="CLOB V2 is live on production">
+  Polymarket's CLOB V2 upgrade is live on `https://clob.polymarket.com`.
+
+  * **Production URL unchanged**: V2 now runs on the standard CLOB host. New integrations should use `https://clob.polymarket.com`.
+  * **No V1 compatibility**: Legacy V1 SDKs and V1-signed orders are no longer supported on production.
+  * **Open orders wiped**: Resting orders from before the cutover did not migrate and must be re-created with V2 signing.
+  * **Migration guide**: See [Migrating to CLOB V2](/v2-migration) for the SDK, raw order signing, pUSD, and builder attribution changes.
+</Update>
+
 <Update label="Apr 21, 2026" description="Relayer API: POST /submit returns immediately without transactionHash">
   * **Faster `POST /submit` responses**: The Relayer's `POST /submit` endpoint now returns immediately with just `{ transactionID, state: "STATE_NEW" }`. The `transactionHash` field has been removed from the submit response to improve performance.
   * **How to get the hash**: Poll [`GET /transaction`](/api-reference/relayer/get-a-transaction-by-id) with the returned `transactionID` to retrieve the onchain `transactionHash` once the transaction has been broadcast.
@@ -18,7 +27,7 @@
 
   **Full walkthrough:** [Migrating to CLOB V2](/v2-migration). Follow [Discord](https://discord.gg/polymarket), Telegram, and [status.polymarket.com](https://status.polymarket.com) for the exact start time.
 
-  **Test against V2 now:** point your client at `https://clob-v2.polymarket.com`. On April 28, V2 takes over `https://clob.polymarket.com`, so no base-URL change is needed after the cutover.
+  **Historical pre-cutover note:** before go-live, integrations could test against `https://clob-v2.polymarket.com`. As of April 28, V2 runs on `https://clob.polymarket.com`.
 
   **What's changing**
 

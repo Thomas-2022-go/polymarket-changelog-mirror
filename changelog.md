@@ -6,6 +6,21 @@
 
 > Welcome to the Polymarket Changelog. Here you will find any important changes to Polymarket, including but not limited to CLOB, API, UI and Mobile Applications.
 
+<Update label="May 12, 2026" description="Increased API Rate Limits">
+  Increased burst and sustained rate limits for several CLOB trading endpoints.
+
+  * CLOB POST /order - 5000 every 10s (500/s) - (BURST)
+  * CLOB POST /order - 48000 every 10 minutes (80/s)
+  * CLOB DELETE /order - 5000 every 10s (500/s) - (BURST)
+  * CLOB DELETE /order - 48000 every 10 minutes (80/s)
+  * CLOB POST /orders - 1500 every 10s (150/s) - (BURST)
+  * CLOB POST /orders - 21000 every 10 minutes (35/s)
+  * CLOB DELETE /cancel-market-orders - 1500 every 10s (150/s) - (BURST)
+  * CLOB DELETE /cancel-market-orders - 21000 every 10 minutes (35/s)
+
+  See [Rate Limits](/api-reference/rate-limits) for the full table.
+</Update>
+
 <Update label="Apr 28, 2026" description="CLOB V2 is live on production">
   Polymarket's CLOB V2 upgrade is live on `https://clob.polymarket.com`.
 

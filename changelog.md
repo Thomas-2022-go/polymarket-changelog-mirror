@@ -6,6 +6,10 @@
 
 > Welcome to the Polymarket Changelog. Here you will find any important changes to Polymarket, including but not limited to CLOB, API, UI and Mobile Applications.
 
+<Update label="May 14, 2026" description="GET /markets/keyset maximum limit reduced to 100">
+  * **`GET /markets/keyset` limit**: The maximum `limit` value is now `100`. Requests should use `after_cursor`/`next_cursor` to paginate through larger result sets.
+</Update>
+
 <Update label="Apr 28, 2026" description="CLOB V2 is live on production">
   Polymarket's CLOB V2 upgrade is live on `https://clob.polymarket.com`.
 

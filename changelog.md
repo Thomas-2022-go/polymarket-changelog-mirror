@@ -6,6 +6,11 @@
 
 > Welcome to the Polymarket Changelog. Here you will find any important changes to Polymarket, including but not limited to CLOB, API, UI and Mobile Applications.
 
+<Update label="May 18, 2026" description="Data API: builderCode added to /v1/builders/leaderboard and /v1/builders/volume">
+  * **New field**: Both `GET /v1/builders/leaderboard` and `GET /v1/builders/volume` now include a `builderCode` string on each entry — the builder's onchain attribution code as attached to orders via `builderCode` (see [Migrating to CLOB V2](/v2-migration)).
+  * **Additive change**: existing clients are unaffected. Legacy builders without a registered code return an empty string.
+</Update>
+
 <Update label="May 14, 2026" description="GET /markets/keyset maximum limit reduced to 100">
   * **`GET /markets/keyset` limit**: The maximum `limit` value is now `100`. Requests should use `after_cursor`/`next_cursor` to paginate through larger result sets.
 </Update>

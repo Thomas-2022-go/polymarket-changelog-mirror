@@ -6,6 +6,17 @@
 
 > Welcome to the Polymarket Changelog. Here you will find any important changes to Polymarket, including but not limited to CLOB, API, UI and Mobile Applications.
 
+<Update label="Jun 1, 2026" description="Increased CLOB order rate limits">
+  Raised burst and sustained rate limits for several CLOB trading endpoints.
+
+  * CLOB POST /order - 120000 every 10 minutes (200/s) - (SUSTAINED)
+  * CLOB DELETE /order - 120000 every 10 minutes (200/s) - (SUSTAINED)
+  * CLOB POST /orders - 2000 every 10s (200/s) - (BURST)
+  * CLOB DELETE /orders - 2000 every 10s (200/s) - (BURST)
+
+  See [Rate Limits](/api-reference/rate-limits) for the full table.
+</Update>
+
 <Update label="May 18, 2026" description="Data API: builderCode added to /v1/builders/leaderboard and /v1/builders/volume">
   * **New field**: Both `GET /v1/builders/leaderboard` and `GET /v1/builders/volume` now include a `builderCode` string on each entry — the builder's onchain attribution code as attached to orders via `builderCode` (see [Migrating to CLOB V2](/v2-migration)).
   * **Additive change**: existing clients are unaffected. Legacy builders without a registered code return an empty string.

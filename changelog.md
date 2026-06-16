@@ -6,6 +6,10 @@
 
 > Welcome to the Polymarket Changelog. Here you will find any important changes to Polymarket, including but not limited to CLOB, API, UI and Mobile Applications.
 
+<Update label="Jun 15, 2026" description="CLOB DELETE /orders maximum batch size reduced to 1000">
+  * **`DELETE /orders` limit**: The maximum number of order IDs per cancel request is now `1000`. Split larger cancellation batches across multiple requests.
+</Update>
+
 <Update label="Jun 1, 2026" description="Increased CLOB order rate limits">
   Raised burst and sustained rate limits for several CLOB trading endpoints.
 

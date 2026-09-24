@@ -6,14 +6,20 @@
 
 > Important changes to Polymarket prediction markets, including the CLOB, APIs, web application, and mobile applications.
 
+<Update label="Sep 15, 2026" description="PolyBolt WebSocket: real-time prices on one socket">
+  * **New socket**: `wss://ws-live-v2.polymarket.com/ws` streams licensed crypto, equity and Chainlink TWAP reference prices (`price.crypto`, `price.equity`, `price.crypto.twap`, CLOB API credentials required) with one envelope shape, a snapshot on every subscribe, a dense per-channel `seq`, and typed close codes. See [PolyBolt WebSocket](/api-reference/live-data/overview) and the [Live Data Channel](/api-reference/wss/polybolt) message reference.
+  * **RTDS is legacy** for reference prices: `crypto_prices`, `crypto_prices_chainlink` and `equity_prices` map to the new channels in [Migrating from RTDS](/migrate/rtds-to-polybolt). The `comments` topic stays on RTDS for now.
+</Update>
+
 <Update label="Sep 4, 2026" description="Data API v2 release">
-  * **New API**: Data API v2 is live at `https://data-api.polymarket.com/v2` for wallet activity, market data, and trader and builder analytics. Start with the [Data API overview](/api-reference/data-api/overview) or [Migrating from v1](/api-reference/data-api/migrating-from-v1).
+  * **New API**: Data API v2 is live at `https://data-api.polymarket.com/v2` for wallet activity, market data, and trader and builder analytics. Start with the [Data API overview](/api-reference/data-api/overview) or [Migrating from v1](/migrate/data-api-v1-to-v2).
   * **Response contract**: Every endpoint wraps its payload in `data`. Paginated reads add `pagination` with opaque cursors (no offset parameter). Each endpoint takes snake\_case parameters with camelCase aliases, names on-chain ids `condition`/`condition_id`, encodes money and size as JSON numbers (bare fields are shares, `_usdc` fields are USD), and signals load with `429` plus `Retry-After`.
   * **New capabilities over v1**: cumulative wallet PnL series (`/v2/user-pnl`), profile stats (`/v2/user-stats`), windowed wallet volume (`/v2/user-volume`), the biggest-winners board, builder leaderboard and volume, per-holder position economics (`/v2/holders?include_pnl=true`), and resolution lifecycle reads (`/v2/resolutions`).
   * **Price history moves to the data host**: `GET /v2/prices-history` replaces the CLOB-hosted route, with three explicit window forms (`interval`, `start`/`end`, `as_of`), second-based `bucket_seconds`, and cursor pagination.
   * **TypeScript SDK**: The SDK's Data API methods now use v2. See the [SDK changelog](/changelog/sdks).
   * **Rate limits**: per-family limits are published on [Rate Limits](/api-reference/rate-limits).
   * **v1 status**: `/v1` keeps serving unchanged but is frozen. New fields and endpoints land on v2 only. The v1 reference lives under **Data API v1 (Legacy)**.
+  * **Higher taker delay**: The taker delay on crypto markets is now `150ms`, up from `50ms`. The change took effect on **September 4 at 14:00 UTC (10:00 AM ET)**.
 </Update>
 
 <Update label="Aug 17, 2026" description="Crypto taker delay reduced to 50ms">
@@ -22,7 +28,7 @@
 
 <Update label="Aug 14, 2026" description="5-minute crypto markets moved to a 60-second Chainlink TWAP">
   * **Longer TWAP window**: All 5-minute crypto markets now resolve using a `60-second` Chainlink TWAP, replacing the `30-second` window introduced on August 7. The change took effect at **00:00 UTC**.
-  * **Updated documentation**: See [Chainlink TWAP Prices](/market-data/chainlink-twap).
+  * **Updated documentation**: See [Chainlink TWAP Prices](/market-data/realtime-data#twap-prices).
 </Update>
 
 <Update label="Aug 10, 2026" description="Data API: per-outcome redemption activity, position fee basis fields, and event artwork fallback">
@@ -36,7 +42,7 @@
   * **TWAP-based resolution**: Crypto up/down markets now resolve using Chainlink-computed time-weighted average prices instead of a single price snapshot.
   * **Opening and settlement prices**: Both the price to beat and the final settlement price come from the applicable TWAP feed.
   * **Averaging windows**: 5-minute markets use a `30-second` lookback; 15-minute and 4-hour markets use a `60-second` lookback.
-  * **Developer access**: See [Chainlink TWAP Prices](/market-data/chainlink-twap) for RTDS topics, SDK examples, and direct Chainlink Data Streams access.
+  * **Developer access**: See [Chainlink TWAP Prices](/market-data/realtime-data#twap-prices) for the current streaming workflow.
 </Update>
 
 <Update label="Jul 17, 2026" description="Latency improvements and order response changes — Friday July 24, 04:00 UTC">

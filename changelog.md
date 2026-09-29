@@ -6,6 +6,12 @@
 
 > Important changes to Polymarket prediction markets, including the CLOB, APIs, web application, and mobile applications.
 
+<Update label="Sep 28, 2026" description="Data API: settlement estimates on /v2/resolutions">
+  * **New optional fields**: rows from `GET /v2/resolutions` can now carry `expected_settlement_time` (RFC3339 UTC) and `settlement_time_basis`. Both are omitted when no estimate applies, so existing clients are unaffected.
+  * **What the basis means**: `managed_proposal_expiration` and `proposal_expiration` mark the end of a live UMA proposal's challenge window, `liveness` the end of a proposal window on Polymarket's v2 oracle, and `dvm_round_estimate` the earliest end of the UMA voting round a disputed market can settle in. These are estimates, not deadlines: a disputed vote can roll into a later round, and a proposal past its window that is still under review returns no estimate while `extended_review` is `true`. See [Market Resolution](/market-data/public-analytics#market-resolution).
+  * **SDKs**: the TypeScript and Python `Resolution` types do not expose these fields yet; read them from the HTTP response in the meantime.
+</Update>
+
 <Update label="Sep 15, 2026" description="PolyBolt WebSocket: real-time prices on one socket">
   * **New socket**: `wss://ws-live-v2.polymarket.com/ws` streams licensed crypto, equity and Chainlink TWAP reference prices (`price.crypto`, `price.equity`, `price.crypto.twap`, CLOB API credentials required) with one envelope shape, a snapshot on every subscribe, a dense per-channel `seq`, and typed close codes. See [PolyBolt WebSocket](/api-reference/live-data/overview) and the [Live Data Channel](/api-reference/wss/polybolt) message reference.
   * **RTDS is legacy** for reference prices: `crypto_prices`, `crypto_prices_chainlink` and `equity_prices` map to the new channels in [Migrating from RTDS](/migrate/rtds-to-polybolt). The `comments` topic stays on RTDS for now.

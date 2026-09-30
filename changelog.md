@@ -6,6 +6,14 @@
 
 > Important changes to Polymarket prediction markets, including the CLOB, APIs, web application, and mobile applications.
 
+<Update label="Sep 29, 2026" description="PolyBolt: forex TWAPs, price provenance, and provider pins">
+  * **New channel**: `price.equity.twap` streams 60-second Chainlink TWAP prices for `eurusd` and `usdjpy`, with the same envelope, snapshot and filter shape as `price.crypto.twap`. See [PolyBolt WebSocket](/api-reference/live-data/overview).
+  * **`source` on every price payload**: `price.crypto`, `price.crypto.twap`, `price.equity` and `price.equity.twap` payloads now name their producing vendor (`pyth`, `massive` or `chainlink`) on every live update and once per snapshot batch. The field is additive; on the equity channels a symbol's vendor can change between connections, so re-read it after every reconnect.
+  * **Provider pins (rolling out)**: on the equity channels, `filter.provider` (`chainlink` or `pyth`) requests a specific vendor and the `subscribed` acknowledgement names the provider actually served, falling back to the symbol's default when the pin cannot be served. Where the selector is not yet enabled the field is accepted and ignored. See [Pin a Price Provider](/api-reference/live-data/overview#pin-a-price-provider).
+  * **New symbols**: `zecusd` joins `price.crypto.twap`; `spcx`, `intc`, `mstr`, `crcl` and `mu` join `price.equity`. Equity defaults now come from Chainlink wherever Chainlink serves the symbol.
+  * The machine-readable contract at `https://ws-live-v2.polymarket.com/asyncapi.json` and the [Live Data Channel](/api-reference/wss/polybolt) reference carry all of the above.
+</Update>
+
 <Update label="Sep 28, 2026" description="Data API: settlement estimates on /v2/resolutions">
   * **New optional fields**: rows from `GET /v2/resolutions` can now carry `expected_settlement_time` (RFC3339 UTC) and `settlement_time_basis`. Both are omitted when no estimate applies, so existing clients are unaffected.
   * **What the basis means**: `managed_proposal_expiration` and `proposal_expiration` mark the end of a live UMA proposal's challenge window, `liveness` the end of a proposal window on Polymarket's v2 oracle, and `dvm_round_estimate` the earliest end of the UMA voting round a disputed market can settle in. These are estimates, not deadlines: a disputed vote can roll into a later round, and a proposal past its window that is still under review returns no estimate while `extended_review` is `true`. See [Market Resolution](/market-data/public-analytics#market-resolution).

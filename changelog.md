@@ -330,3 +330,6 @@
   * CLOB DELETE /order - 500 every 10s (50/s) - (BURST) - Throttle requests over the maximum configured rate
   * DELETE /order - 3000 every 10 minutes (5/s) - Throttle requests over the maximum configured rate
 </Update>
+
+
+This documentation is built and hosted on [Mintlify](https://mintlify.com), a developer documentation platform.

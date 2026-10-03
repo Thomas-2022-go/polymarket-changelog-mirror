@@ -6,6 +6,13 @@
 
 > Important changes to Polymarket prediction markets, including the CLOB, APIs, web application, and mobile applications.
 
+<Update label="Oct 2, 2026" description="PolyBolt: price.crypto defaults to Chainlink, with provider pins and two new symbols">
+  * **Chainlink-first crypto prices**: `price.crypto` now serves Chainlink prices by default on every symbol, matching `price.equity`. Subscriptions that omit `filter.provider` see `source: "chainlink"` from their next connection onward, so re-read `source` after every reconnect and treat the value set as open.
+  * **Provider pins on `price.crypto`**: `filter.provider` (`chainlink` or `pyth`) now works on the crypto channel. Pyth remains available on `btcusd`, `ethusd`, `solusd`, `xrpusd`, `dogeusd` and `bnbusd`; the `subscribed` acknowledgement names the provider actually served, falling back to the symbol's default when the pin cannot be served. See [Pin a Price Provider](/api-reference/live-data/overview#pin-a-price-provider).
+  * **New symbols**: `hypeusd` and `zecusd` join `price.crypto` (Chainlink only), aligning the spot catalog with `price.crypto.twap`'s eight symbols.
+  * The machine-readable contract at `https://ws-live-v2.polymarket.com/asyncapi.json` and the [migration guide](/migrate/rtds-to-polybolt) carry all of the above.
+</Update>
+
 <Update label="Sep 29, 2026" description="PolyBolt: forex TWAPs, price provenance, and provider pins">
   * **New channel**: `price.equity.twap` streams 60-second Chainlink TWAP prices for `eurusd` and `usdjpy`, with the same envelope, snapshot and filter shape as `price.crypto.twap`. See [PolyBolt WebSocket](/api-reference/live-data/overview).
   * **`source` on every price payload**: `price.crypto`, `price.crypto.twap`, `price.equity` and `price.equity.twap` payloads now name their producing vendor (`pyth`, `massive` or `chainlink`) on every live update and once per snapshot batch. The field is additive; on the equity channels a symbol's vendor can change between connections, so re-read it after every reconnect.

@@ -6,6 +6,19 @@
 
 > Important changes to Polymarket prediction markets, including the CLOB, APIs, web application, and mobile applications.
 
+**Oct 21, 2026**
+
+* **New symbols**: `usdchf`, `usdmxn`, `usdzar`, `usdbrl`, `usdnok`, `usdsek` and `usdtry` join `price.equity`, served by Pyth (the feeds the forex up-or-down markets resolve on). See [Supported Symbols](/api-reference/live-data/overview#supported-symbols).
+* `usdbrl` trades on weekdays only, so outside those hours its `market_status` reads `closed` and the snapshot carries the closing price.
+
+**Oct 21, 2026**
+
+* **New field**: `price.equity` and `price.equity.twap` payloads carry `market_status` (`open`, `closed` or `unknown`) on every live update and once per snapshot batch, so a client can tell a closed market from a stalled price. The field is additive and absent when the producer states nothing; treat absent as not stated. See [Read the Market Status](/api-reference/live-data/overview#read-the-market-status).
+* **Status changes arrive as updates**: a change without a new price repeats the last price with the new status and `is_carried_forward: true`, so an update can share its `timestamp` with the one before it. Do not discard updates only because their `timestamp` repeats.
+* **Closed snapshots keep the closing price**: while a series is `closed` or `unknown`, its snapshot carries the last price point even when it is older than two minutes.
+* **Per provider**: the status describes the instrument each provider prices. Chainlink's around-the-clock equity products read `open` outside exchange hours, while a symbol pinned to `pyth` follows its exchange session.
+* **SDKs**: the TypeScript and Python SDKs do not expose `market_status` yet; read it from the raw WebSocket payload. The machine-readable contract at `https://ws-live-v2.polymarket.com/asyncapi.json` carries the field.
+
 **Oct 7, 2026**
 
 * **New endpoint**: `GET /v2/tokens` resolves up to 50 ERC-1155 token ids per call (`token_id`, request order kept, unknown ids absent) or lists every token of up to 10 conditions (`condition`). A condition selector is any id the other routes carry: a ConditionalTokens condition id, a neg-risk market id (every market of the structure, in question order), a polymarket-v2 condition id in its 64- or 66-character form, or the on-chain event id of a polymarket-v2 neg-risk structure. Exactly one selector per request. See [Token Lookup](/market-data/public-analytics#token-lookup).

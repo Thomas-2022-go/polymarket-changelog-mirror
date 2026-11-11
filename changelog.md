@@ -6,6 +6,21 @@
 
 > Important changes to Polymarket prediction markets, including the CLOB, APIs, web application, and mobile applications.
 
+**Nov 10, 2026**
+
+PolyBolt: energy futures on price.equity
+
+* **New symbols**: `wti`, `brent` and `natgas` join `price.equity`, served by Chainlink with `market_status`. See [Supported Symbols](https://docs.polymarket.com/api-reference/live-data/overview.md#supported-symbols).
+* **Contract rolls**: `cll` and `hn` (Pyth) now move to the next contract at the open of the current contract's third-to-last trading session, the Active Month the WTI and natural gas Up or Down markets resolve on. `wti`, `brent` and `natgas` follow Chainlink's own roll schedule.
+* **Chainlink prices**: `full_accuracy_value` on Chainlink-sourced prices now carries at most 15 significant digits, dropping floating-point artifacts such as `3.2091000000000003`.
+
+**Nov 5, 2026**
+
+PolyBolt: dxy, and Pyth pins on spcx and mu
+
+* **New symbol**: `dxy` (the US Dollar Index) joins `price.equity`, served by Pyth, the feed the DXY markets resolve on.
+* **Pyth on `spcx` and `mu`**: both still default to Chainlink and can now be pinned to `pyth`, the feed their markets resolve on. See [Pin a Price Provider](https://docs.polymarket.com/api-reference/live-data/overview.md#pin-a-price-provider).
+
 **Nov 2, 2026**
 
 Data API v1 retirement

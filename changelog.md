@@ -6,6 +6,29 @@
 
 > Important changes to Polymarket prediction markets, including the CLOB, APIs, web application, and mobile applications.
 
+**Nov 11, 2026**
+
+CLOB API deprecations take effect Dec 14
+
+On `https://clob.polymarket.com`, three order and trade query changes take effect
+on December 14. Update your integration before then to avoid failed requests.
+
+* **`associate_trades` is deprecated on CLOB order and trade responses.** Do not
+  use it to track fills.
+* **`GET https://clob.polymarket.com/data/orders` requires `market` when filtering
+  by `asset_id`.** Requests with only `asset_id` return `400`
+  (`asset_id requires market`).
+* **`GET https://clob.polymarket.com/orders` and
+  `GET https://clob.polymarket.com/v1/trade/open-orders` no longer support
+  `asset_id` or `token_id` filters.** To filter open orders by asset, use
+  `GET https://clob.polymarket.com/data/orders` with `asset_id` and `market`.
+
+**Nov 11, 2026**
+
+Relayer supported contracts
+
+* **Polymarket Relayer Policy Change**: From 11/11/2026, the relayer will only relay transactions that interact with Polymarket contracts and a short list of supported third-party contracts. All other transactions will be rejected.
+
 **Nov 10, 2026**
 
 PolyBolt: energy futures on price.equity

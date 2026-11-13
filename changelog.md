@@ -6,6 +6,13 @@
 
 > Important changes to Polymarket prediction markets, including the CLOB, APIs, web application, and mobile applications.
 
+**Nov 12, 2026**
+
+Polymarket Protocol V2 support in Python and Rust
+
+* [Python `py-clob-client-v2 1.2.2`](https://pypi.org/project/py-clob-client-v2/1.2.2/) and [Rust `polymarket_client_sdk_v2 0.9.1`](https://crates.io/crates/polymarket_client_sdk_v2/0.9.1) add support for signing orders for Polymarket Protocol V2 markets on Polygon Amoy Testnet (chain ID `80002`).
+* The Python CLOB client remains deprecated. Follow the [unified SDK migration guide](https://docs.polymarket.com/migrate/clob-sdk-to-unified-sdk.md) to move to `polymarket-client`.
+
 **Nov 11, 2026**
 
 CLOB API deprecations take effect Dec 14

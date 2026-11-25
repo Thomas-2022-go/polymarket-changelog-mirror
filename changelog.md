@@ -6,6 +6,13 @@
 
 > Important changes to Polymarket prediction markets, including the CLOB, APIs, web application, and mobile applications.
 
+**Nov 25, 2026**
+
+Market clarifications endpoint
+
+* [`GET /market-clarifications`](https://docs.polymarket.com/api-reference/markets/list-market-clarifications) lists the notes posted on a market after trading begins to clarify how it settles. Filter by `market_id`, `event_id`, `question_id`, or `tx_hash`. No authentication required.
+* Supported in [TypeScript `@polymarket/client 0.20.1`](https://www.npmjs.com/package/@polymarket/client/v/0.20.1) with `listMarketClarifications()` and [Python `polymarket-client 0.20.1`](https://pypi.org/project/polymarket-client/0.20.1/) with `list_market_clarifications()`. See [Market Clarifications](https://docs.polymarket.com/market-data/market-details.md#market-clarifications).
+
 **Nov 20, 2026**
 
 DeFi fee and rebate changes
